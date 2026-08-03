@@ -19,3 +19,5 @@ app.get("/", (request, response) => {
     message: "Welcome to MotorRepair&Connect API"
   });
 });
+
+export default app
