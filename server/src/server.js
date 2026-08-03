@@ -1,3 +1,2 @@
-const bookingData = {};
-const businessOwner = {};
-const customerLocation = {};
+import dotenv from "dotenv"
+import app from "./app.js"
