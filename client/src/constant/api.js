@@ -12,3 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+
+app.get("/", (request, response) => {
+  response.json({
+    success: true,
+    message: "Welcome to MotorRepair&Connect API"
+  });
+});
