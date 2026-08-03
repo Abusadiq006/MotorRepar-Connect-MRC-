@@ -3,3 +3,5 @@ import cors from "cors"
 import compression from "compression"
 import helmet from "helmet"
 import morgan from "morgan"
+
+const app = express()
