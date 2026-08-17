@@ -40,28 +40,28 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  businesses  Business[]
-  bookings    Booking[]
-  vehicles    Vehicle[]
+  businesses Business[]
+  bookings   Booking[]
+  vehicles   Vehicle[]
 
   @@index([role])
 }
 
 model Business {
-  id          String       @id @default(cuid())
-  name        String
-  type        BusinessType
-  phone       String
-  address     String?
-  latitude    Decimal?     @db.Decimal(10,7)
-  longitude   Decimal?     @db.Decimal(10,7)
-  ownerId     String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id        String       @id @default(cuid())
+  name      String
+  type      BusinessType
+  phone     String
+  address   String?
+  latitude  Decimal?     @db.Decimal(10, 7)
+  longitude Decimal?     @db.Decimal(10, 7)
+  ownerId   String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
 
-  owner       User         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  services    Service[]
-  bookings    Booking[]
+  owner    User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  services Service[]
+  bookings Booking[]
 
   @@index([ownerId])
   @@index([type])
@@ -71,14 +71,14 @@ model Service {
   id          String   @id @default(cuid())
   name        String
   description String?
-  price       Decimal  @db.Decimal(12,2)
+  price       Decimal  @db.Decimal(12, 2)
   duration    Int?
   businessId  String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  business    Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
-  bookings    Booking[]
+  business Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  bookings Booking[]
 
   @@index([businessId])
 }
@@ -93,8 +93,8 @@ model Vehicle {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  owner       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  bookings    Booking[]
+  owner    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings Booking[]
 
   @@unique([userId, plateNumber])
   @@index([userId])
@@ -112,10 +112,10 @@ model Booking {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
-  customer    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  business    Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
-  service     Service       @relation(fields: [serviceId], references: [id], onDelete: Cascade)
-  vehicle     Vehicle       @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  customer User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  service  Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  vehicle  Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([businessId])
